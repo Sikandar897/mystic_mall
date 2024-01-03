@@ -1,16 +1,17 @@
-# mystic_mall
+# MysticMall
 
-A new Flutter project.
+🛍️✨ **Coming Soon!** 🛍️✨
 
-## Getting Started
+Welcome to MysticMall – your future go-to shopping destination! my Flutter e-commerce app, powered by Firebase, is currently in development and will bring you an intuitive, user-friendly, and feature-packed shopping experience.
 
-This project is a starting point for a Flutter application.
+## Features (Coming Soon)
 
-A few resources to get you started if this is your first Flutter project:
+- Add to Cart
+- Wishlist
+- Cash on Delivery
+- Ad Integration
+- Push Notifications
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Stay tuned for updates as i work on enhancing and expanding MysticMall. Contributions are welcome!
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Happy coding!✨
