@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart'; 
+import 'package:flutter/material.dart';
+import 'package:mystic_mall/utils/app_constant.dart'; 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
 
@@ -7,9 +8,9 @@ class MainScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Colors.deepOrange,
+        backgroundColor: AppConstant.appMainColor,
         foregroundColor: Colors.white,
-        title: const Text('Demo'),
+        title: Text(AppConstant.appMainName),
       ),
     );
   }
