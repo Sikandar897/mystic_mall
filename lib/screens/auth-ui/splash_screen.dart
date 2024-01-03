@@ -3,7 +3,7 @@ import "dart:async";
 import "package:flutter/material.dart";
 import "package:get/get.dart";
 import "package:lottie/lottie.dart";
-import "package:mystic_mall/screens/user-panel/main_screen.dart";
+import "package:mystic_mall/screens/auth-ui/welcome_screen.dart";
 import "package:mystic_mall/utils/app_constant.dart";
 
 class SplashScreen extends StatefulWidget {
@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(const Duration(seconds: 3), () { 
-      Get.offAll(const MainScreen());
+      Get.offAll(const WelcomeScreen());
     });
   }
   @override
