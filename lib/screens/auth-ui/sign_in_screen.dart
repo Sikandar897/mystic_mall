@@ -5,6 +5,8 @@ import 'package:lottie/lottie.dart';
 import 'package:mystic_mall/screens/auth-ui/sign_up_screen.dart';
 import 'package:mystic_mall/utils/app_constant.dart';
 
+//itsElexender friday jan, 5 2024 (OFF)
+
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
 
