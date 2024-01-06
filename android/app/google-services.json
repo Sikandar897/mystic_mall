@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "577885081513",
+    "project_id": "mysticmall",
+    "storage_bucket": "mysticmall.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:577885081513:android:f10586bdd34760d6bbbeb8",
+        "android_client_info": {
+          "package_name": "com.example.mystic_mall"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7O5DUeqxQ7FgTc49cIvA1a4IOIIKohJs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

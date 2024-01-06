@@ -43,6 +43,7 @@ dependencies:
   get: ^4.6.6
   font_awesome_flutter: ^10.6.0
   flutter_keyboard_visibility: ^6.0.0
+  firebase_core: ^2.24.2
 
 dev_dependencies:
   flutter_test:
