@@ -1,8 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:mystic_mall/controllers/sign_in_controller.dart';
 import 'package:mystic_mall/screens/auth-ui/sign_up_screen.dart';
+import 'package:mystic_mall/screens/user-panel/main_screen.dart';
 import 'package:mystic_mall/utils/app_constant.dart';
 
 //itsElexender friday jan, 5 2024 (OFF)
@@ -15,6 +18,12 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
+  final SignInController signInController = Get.put(SignInController());
+
+  //text editing controller
+
+  TextEditingController userEmail = TextEditingController();
+  TextEditingController userPassword = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return KeyboardVisibilityBuilder(
@@ -47,6 +56,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: TextField(
+                        controller: userEmail,
                         cursorColor: AppConstant.appSecondoryColor,
                         keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
@@ -63,20 +73,32 @@ class _SignInScreenState extends State<SignInScreen> {
                     margin: const EdgeInsets.symmetric(horizontal: 5.0),
                     width: Get.width,
                     child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: TextField(
-                        cursorColor: AppConstant.appSecondoryColor,
-                        keyboardType: TextInputType.visiblePassword,
-                        decoration: InputDecoration(
-                            hintText: 'password',
-                            prefixIcon: const Icon(Icons.lock),
-                            suffix: const Icon(Icons.visibility_off),
-                            contentPadding:
-                                const EdgeInsets.only(top: 2.0, left: 8.0),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10.0))),
-                      ),
-                    ),
+                        padding: const EdgeInsets.all(10.0),
+                        child: Obx(
+                          () => TextField(
+                            controller: userPassword,
+                            obscureText:
+                                signInController.isPasswordVisible.value,
+                            cursorColor: AppConstant.appSecondoryColor,
+                            keyboardType: TextInputType.visiblePassword,
+                            decoration: InputDecoration(
+                                hintText: 'password',
+                                prefixIcon: const Icon(Icons.lock),
+                                suffix: GestureDetector(
+                                    onTap: () {
+                                      signInController.isPasswordVisible
+                                          .toggle();
+                                    },
+                                    child: signInController
+                                            .isPasswordVisible.value
+                                        ? const Icon(Icons.visibility_off)
+                                        : const Icon(Icons.visibility)),
+                                contentPadding:
+                                    const EdgeInsets.only(top: 2.0, left: 8.0),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10.0))),
+                          ),
+                        )),
                   ),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -97,7 +119,47 @@ class _SignInScreenState extends State<SignInScreen> {
                     width: Get.width / 2,
                     height: Get.height / 18,
                     child: TextButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                          String email = userEmail.text.trim();
+                          String password = userPassword.text.trim();
+
+                          if (email.isEmpty || password.isEmpty) {
+                            Get.snackbar(
+                                "Error", "Please enter required details!",
+                                snackPosition: SnackPosition.BOTTOM,
+                                backgroundColor: AppConstant.appSecondoryColor,
+                                colorText: AppConstant.appTextColor);
+                          } else {
+                            UserCredential? userCredential =
+                                await signInController.signInMethod(email, password);
+
+                            if (userCredential != null) {
+                              if (userCredential.user!.emailVerified) {
+                                Get.snackbar("Success", "Login Successfully!",
+                                    snackPosition: SnackPosition.BOTTOM,
+                                    backgroundColor:
+                                        AppConstant.appSecondoryColor,
+                                    colorText: AppConstant.appTextColor);
+
+                                //route
+                                Get.offAll(const MainScreen());
+                              } else {
+                                Get.snackbar("Error",
+                                    "Please verify your email before login",
+                                    snackPosition: SnackPosition.BOTTOM,
+                                    backgroundColor:
+                                        AppConstant.appSecondoryColor,
+                                    colorText: AppConstant.appTextColor);
+                              }
+                            } else {
+                              Get.snackbar("Error", "Please try again!",
+                                  snackPosition: SnackPosition.BOTTOM,
+                                  backgroundColor:
+                                      AppConstant.appSecondoryColor,
+                                  colorText: AppConstant.appTextColor);
+                            }
+                          }
+                        },
                         child: const Text(
                           'Sign In',
                           style: TextStyle(color: AppConstant.appTextColor),
@@ -106,7 +168,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   SizedBox(
                     height: Get.height / 20,
                   ),
-                   Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
@@ -117,9 +179,9 @@ class _SignInScreenState extends State<SignInScreen> {
                         onTap: () => Get.off(const SignUpScreen()),
                         child: const Text(
                           "Sign Up",
-                          style: TextStyle(color: AppConstant.appSecondoryColor,
-                          fontWeight: FontWeight.bold
-                          ),
+                          style: TextStyle(
+                              color: AppConstant.appSecondoryColor,
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
                     ],
