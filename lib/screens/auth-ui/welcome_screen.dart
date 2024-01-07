@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:mystic_mall/controllers/google_sign_in_controller.dart';
 import 'package:mystic_mall/utils/app_constant.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class WelcomeScreen extends StatelessWidget {
-  const WelcomeScreen({super.key});
+  WelcomeScreen({super.key});
+
+  final GoogleSignInController _googleSignInController =
+      Get.put(GoogleSignInController());
 
   @override
   Widget build(BuildContext context) {
@@ -38,11 +42,11 @@ class WelcomeScreen extends StatelessWidget {
             width: Get.width / 1.2,
             height: Get.height / 12,
             child: TextButton.icon(
-                onPressed: () {},
-                icon: const FaIcon(
-                  FontAwesomeIcons.google, 
-                  color: AppConstant.appTextColor
-                ),
+                onPressed: () {
+                  _googleSignInController.signWithGoogle();
+                },
+                icon: const FaIcon(FontAwesomeIcons.google,
+                    color: AppConstant.appTextColor),
                 label: const Text(
                   'Sign in with google',
                   style: TextStyle(color: AppConstant.appTextColor),
@@ -58,11 +62,8 @@ class WelcomeScreen extends StatelessWidget {
             height: Get.height / 12,
             child: TextButton.icon(
                 onPressed: () {},
-                icon: const FaIcon(
-                  Icons.email,
-                  size: 28, 
-                  color: AppConstant.appTextColor
-                ),
+                icon: const FaIcon(Icons.email,
+                    size: 28, color: AppConstant.appTextColor),
                 label: const Text(
                   'Sign in with email',
                   style: TextStyle(color: AppConstant.appTextColor),

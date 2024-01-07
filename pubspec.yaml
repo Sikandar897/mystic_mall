@@ -42,8 +42,19 @@ dependencies:
   #getx statmanagemnt dependency
   get: ^4.6.6
   font_awesome_flutter: ^10.6.0
+
   flutter_keyboard_visibility: ^6.0.0
+  
   firebase_core: ^2.24.2
+
+  firebase_auth: ^4.16.0
+
+  #google sign in 
+  google_sign_in: ^6.2.1
+
+  cloud_firestore: ^4.14.0
+
+  flutter_easyloading: ^3.0.5
 
 dev_dependencies:
   flutter_test:
