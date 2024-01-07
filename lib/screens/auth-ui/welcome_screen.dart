@@ -5,6 +5,8 @@ import 'package:mystic_mall/controllers/google_sign_in_controller.dart';
 import 'package:mystic_mall/utils/app_constant.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'sign_in_screen.dart';
+
 class WelcomeScreen extends StatelessWidget {
   WelcomeScreen({super.key});
 
@@ -61,7 +63,9 @@ class WelcomeScreen extends StatelessWidget {
             width: Get.width / 1.2,
             height: Get.height / 12,
             child: TextButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(const SignInScreen());
+                },
                 icon: const FaIcon(Icons.email,
                     size: 28, color: AppConstant.appTextColor),
                 label: const Text(

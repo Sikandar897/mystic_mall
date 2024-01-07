@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get/get.dart';
+import 'package:mystic_mall/controllers/sign_up_controller.dart';
 import 'package:mystic_mall/screens/auth-ui/sign_in_screen.dart';
 import 'package:mystic_mall/utils/app_constant.dart';
 
@@ -12,6 +14,16 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  final SignUpController signUpController = Get.put(SignUpController());
+
+  //text editing controller
+
+  TextEditingController userName = TextEditingController();
+  TextEditingController userEmail = TextEditingController();
+  TextEditingController userPassword = TextEditingController();
+  TextEditingController userPhone = TextEditingController();
+  TextEditingController userCity = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return KeyboardVisibilityBuilder(
@@ -49,6 +61,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: TextField(
+                        controller: userName,
                         cursorColor: AppConstant.appSecondoryColor,
                         keyboardType: TextInputType.name,
                         decoration: InputDecoration(
@@ -67,6 +80,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: TextField(
+                        controller: userPhone,
                         cursorColor: AppConstant.appSecondoryColor,
                         keyboardType: TextInputType.phone,
                         decoration: InputDecoration(
@@ -85,6 +99,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: TextField(
+                        controller: userCity,
                         cursorColor: AppConstant.appSecondoryColor,
                         keyboardType: TextInputType.streetAddress,
                         decoration: InputDecoration(
@@ -103,6 +118,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     child: Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: TextField(
+                        controller: userEmail,
                         cursorColor: AppConstant.appSecondoryColor,
                         keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
@@ -119,20 +135,35 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     margin: const EdgeInsets.symmetric(horizontal: 5.0),
                     width: Get.width,
                     child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: TextField(
-                        cursorColor: AppConstant.appSecondoryColor,
-                        keyboardType: TextInputType.visiblePassword,
-                        decoration: InputDecoration(
-                            hintText: 'password',
-                            prefixIcon: const Icon(Icons.lock),
-                            suffix: const Icon(Icons.visibility_off),
-                            contentPadding:
-                                const EdgeInsets.only(top: 2.0, left: 8.0),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10.0))),
-                      ),
-                    ),
+                        padding: const EdgeInsets.all(10.0),
+                        child: Obx(
+                          () => TextField(
+                            controller: userPassword,
+
+                            //obsecure visable and hide
+
+                            obscureText:
+                                signUpController.isPasswordVisible.value,
+                            cursorColor: AppConstant.appSecondoryColor,
+                            keyboardType: TextInputType.visiblePassword,
+                            decoration: InputDecoration(
+                                hintText: 'password',
+                                prefixIcon: const Icon(Icons.lock),
+                                suffix: GestureDetector(
+                                    onTap: () {
+                                      signUpController.isPasswordVisible
+                                          .toggle();
+                                    },
+                                    child:
+                                        signUpController.isPasswordVisible.value
+                                            ? const Icon(Icons.visibility_off)
+                                            : const Icon(Icons.visibility)),
+                                contentPadding:
+                                    const EdgeInsets.only(top: 2.0, left: 8.0),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10.0))),
+                          ),
+                        )),
                   ),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -153,7 +184,42 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     width: Get.width / 2,
                     height: Get.height / 18,
                     child: TextButton(
-                        onPressed: () {},
+                        onPressed: () async {
+                          String name = userName.text.trim();
+                          String email = userEmail.text.trim();
+                          String phone = userPhone.text.trim();
+                          String city = userCity.text.trim();
+                          String password = userPassword.text.trim();
+                          String userDeviceToken = '';
+
+                          if (name.isEmpty ||
+                              email.isEmpty ||
+                              phone.isEmpty ||
+                              city.isEmpty ||
+                              password.isEmpty) {
+                            Get.snackbar(
+                                "Error", "Please enter required details!",
+                                snackPosition: SnackPosition.BOTTOM,
+                                backgroundColor: AppConstant.appSecondoryColor,
+                                colorText: AppConstant.appTextColor);
+                          } else {
+                            UserCredential? userCredential =
+                                await signUpController.signUpMethod(name, email,
+                                    phone, city, password, userDeviceToken);
+
+                            if (userCredential != null) {
+                              Get.snackbar("Verification email sent",
+                                  "Please check your email",
+                                  snackPosition: SnackPosition.BOTTOM,
+                                  backgroundColor:
+                                      AppConstant.appSecondoryColor,
+                                  colorText: AppConstant.appTextColor);
+
+                              FirebaseAuth.instance.signOut();
+                              Get.offAll(const SignInScreen());
+                            }
+                          }
+                        },
                         child: const Text(
                           'Sign Up',
                           style: TextStyle(color: AppConstant.appTextColor),
