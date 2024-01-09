@@ -15,6 +15,7 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   final SignUpController signUpController = Get.put(SignUpController());
+  
 
   //text editing controller
 

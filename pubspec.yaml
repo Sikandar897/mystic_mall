@@ -58,6 +58,8 @@ dependencies:
 
   email_validator: ^2.0.1
 
+  firebase_messaging: ^14.7.10
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

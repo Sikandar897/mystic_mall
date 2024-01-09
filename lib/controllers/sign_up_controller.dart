@@ -7,15 +7,19 @@ import 'package:get/get.dart';
 import 'package:mystic_mall/models/user_model.dart';
 import 'package:mystic_mall/utils/app_constant.dart';
 
+import 'get_device_token_controller.dart';
+
 class SignUpController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  
 
   //for password visibllity
 
   var isPasswordVisible = true.obs;
 
   Future<UserCredential?> signUpMethod(
+    
       String userName,
       String userEmail,
       String userPhone,
@@ -23,6 +27,7 @@ class SignUpController extends GetxController {
       String userPassword,
       String userDeviceToken) async {
     try {
+      final GetDeviceTokenController getDeviceTokenController = Get.put(GetDeviceTokenController());
       EasyLoading.show(status: "Please wait ..");
 
       UserCredential userCredential =
@@ -38,7 +43,7 @@ class SignUpController extends GetxController {
           email: userEmail,
           phone: userPhone,
           userImg: '',
-          userDeviceToken: userDeviceToken,
+          userDeviceToken: getDeviceTokenController.deviceToken.toString(),
           country: '',
           userAddress: '',
           street: '',
