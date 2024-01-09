@@ -12,6 +12,6 @@ Welcome to MysticMall – your future go-to shopping destination! my Flutter e-c
 - Ad Integration
 - Push Notifications
 
-Stay tuned for updates as i work on enhancing and expanding MysticMall. Contributions are welcome!
+Stay tuned for updates as i work on enhancing and expanding MysticMall
 
 Happy coding!✨
