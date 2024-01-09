@@ -7,7 +7,7 @@ import 'package:mystic_mall/models/user_model.dart';
 import 'package:mystic_mall/screens/user-panel/main_screen.dart';
 
 class GoogleSignInController extends GetxController {
-   final GoogleSignIn googleSignIn = GoogleSignIn();
+  final GoogleSignIn googleSignIn = GoogleSignIn();
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future<void> signWithGoogle() async {
@@ -16,7 +16,6 @@ class GoogleSignInController extends GetxController {
           await googleSignIn.signIn();
 
       if (googleSignInAccount != null) {
-
         EasyLoading.show(status: "Please wait ..");
         final GoogleSignInAuthentication googleSignInAuthentication =
             await googleSignInAccount.authentication;
@@ -54,14 +53,13 @@ class GoogleSignInController extends GetxController {
               .doc(user.uid)
               .set(userModel.toMap());
 
-              EasyLoading.dismiss();
+          EasyLoading.dismiss();
 
-              Get.offAll(const MainScreen());
-
+          Get.offAll(const MainScreen());
         }
       }
     } catch (e) {
-       EasyLoading.dismiss();
+      EasyLoading.dismiss();
       // ignore: avoid_print
       print("error $e");
     }

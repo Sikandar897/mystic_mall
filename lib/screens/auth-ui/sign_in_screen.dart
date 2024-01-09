@@ -4,6 +4,7 @@ import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:mystic_mall/controllers/sign_in_controller.dart';
+import 'package:mystic_mall/screens/auth-ui/forget_password_screen.dart';
 import 'package:mystic_mall/screens/auth-ui/sign_up_screen.dart';
 import 'package:mystic_mall/screens/user-panel/main_screen.dart';
 import 'package:mystic_mall/utils/app_constant.dart';
@@ -89,10 +90,10 @@ class _SignInScreenState extends State<SignInScreen> {
                                       signInController.isPasswordVisible
                                           .toggle();
                                     },
-                                    child: signInController
-                                            .isPasswordVisible.value
-                                        ? const Icon(Icons.visibility_off)
-                                        : const Icon(Icons.visibility)),
+                                    child:
+                                        signInController.isPasswordVisible.value
+                                            ? const Icon(Icons.visibility_off)
+                                            : const Icon(Icons.visibility)),
                                 contentPadding:
                                     const EdgeInsets.only(top: 2.0, left: 8.0),
                                 border: OutlineInputBorder(
@@ -103,10 +104,15 @@ class _SignInScreenState extends State<SignInScreen> {
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 10.0),
                     alignment: Alignment.centerRight,
-                    child: const Text('Forget password?',
-                        style: TextStyle(
-                            color: AppConstant.appSecondoryColor,
-                            fontWeight: FontWeight.bold)),
+                    child: GestureDetector(
+                      onTap: () {
+                        Get.to(const ForgetPasswordScreen());
+                      },
+                      child: const Text('Forget password?',
+                          style: TextStyle(
+                              color: AppConstant.appSecondoryColor,
+                              fontWeight: FontWeight.bold)),
+                    ),
                   ),
                   SizedBox(
                     height: Get.height / 20,
@@ -121,7 +127,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     child: TextButton(
                         onPressed: () async {
                           String email = userEmail.text.trim();
-                          String password = userPassword.text.trim();
+                          String password = userPassword.text;
 
                           if (email.isEmpty || password.isEmpty) {
                             Get.snackbar(
@@ -131,7 +137,8 @@ class _SignInScreenState extends State<SignInScreen> {
                                 colorText: AppConstant.appTextColor);
                           } else {
                             UserCredential? userCredential =
-                                await signInController.signInMethod(email, password);
+                                await signInController.signInMethod(
+                                    email, password);
 
                             if (userCredential != null) {
                               if (userCredential.user!.emailVerified) {
