@@ -60,6 +60,11 @@ dependencies:
 
   firebase_messaging: ^14.7.10
 
+  #A carousel slider widget, support infinite scroll and custom child widget.
+  carousel_slider: ^4.2.1
+
+  cached_network_image: ^3.3.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
