@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:mystic_mall/utils/app_constant.dart';
+import 'package:mystic_mall/widgets/banner_widget.dart';
 import 'package:mystic_mall/widgets/custome_drawer_widget.dart'; 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -16,6 +18,19 @@ class MainScreen extends StatelessWidget {
         actions: const [],
       ),
       drawer: const MyDrawerWidget(),
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Container(
+          child: Column(
+            children: [
+              SizedBox(height: Get.height / 90.0,), 
+              //banners
+
+              const BannerWidget(),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
