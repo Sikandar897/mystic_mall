@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mystic_mall/utils/app_constant.dart';
 import 'package:mystic_mall/widgets/banner_widget.dart';
+import 'package:mystic_mall/widgets/category_widget.dart';
 import 'package:mystic_mall/widgets/custome_drawer_widget.dart';
 import 'package:mystic_mall/widgets/heading_widget.dart';
 
@@ -28,11 +29,12 @@ class MainScreen extends StatelessWidget {
               SizedBox(
                 height: Get.height / 90.0,
               ),
-              //banners
+             
+              //bannerwidget
 
               const BannerWidget(),
 
-              //heading
+              //heading widget
 
               HeadingWidget(
                 headingTitle: 'Categories',
@@ -40,7 +42,12 @@ class MainScreen extends StatelessWidget {
                 onTap: () {},
                 buttonText: 'See More >',
               ),
-              
+
+
+              //categoreis widget
+              const CategoryWidget(),
+
+               //heading widget
               HeadingWidget(
                 headingTitle: 'Flash Sales',
                 headingSubTitle: 'According to your budget',

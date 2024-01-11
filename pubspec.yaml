@@ -41,29 +41,42 @@ dependencies:
 
   #getx statmanagemnt dependency
   get: ^4.6.6
+
+  #font awosme depenedcy
   font_awesome_flutter: ^10.6.0
 
+  #this dependecy helps in auto keyboard of and on while swting to other screens
   flutter_keyboard_visibility: ^6.0.0
   
+  #firebase core dependecny
   firebase_core: ^2.24.2
 
+  #firebase authentication dependency
   firebase_auth: ^4.16.0
 
   #google sign in 
   google_sign_in: ^6.2.1
 
+  #firestore dependency
   cloud_firestore: ^4.14.0
 
+  #cool easy loading depenedcy 
   flutter_easyloading: ^3.0.5
-
+  
+  #email vilidator
   email_validator: ^2.0.1
 
+  #firebase_messaging dependecny
   firebase_messaging: ^14.7.10
 
   #A carousel slider widget, support infinite scroll and custom child widget.
   carousel_slider: ^4.2.1
 
+  #cached newtwork dependency which help one time loading then img stroed in cached for the next time it wont reload again
   cached_network_image: ^3.3.1
+
+  image_card: 
+  
 
 dev_dependencies:
   flutter_test:
