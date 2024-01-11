@@ -4,6 +4,7 @@ import 'package:mystic_mall/utils/app_constant.dart';
 import 'package:mystic_mall/widgets/banner_widget.dart';
 import 'package:mystic_mall/widgets/category_widget.dart';
 import 'package:mystic_mall/widgets/custome_drawer_widget.dart';
+import 'package:mystic_mall/widgets/flash_sales.dart';
 import 'package:mystic_mall/widgets/heading_widget.dart';
 
 class MainScreen extends StatelessWidget {
@@ -54,6 +55,10 @@ class MainScreen extends StatelessWidget {
                 onTap: () {},
                 buttonText: 'See More >',
               ),
+
+              //flashSales product
+
+              const FlashSaleWidget()
             ],
           ),
         ),
