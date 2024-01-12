@@ -37,7 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   
   #dependecy for lottie
-  lottie: ^2.7.0
+  lottie: ^3.0.0
 
   #getx statmanagemnt dependency
   get: ^4.6.6
