@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mystic_mall/screens/user-panel/all_categories_screen.dart';
 import 'package:mystic_mall/screens/user-panel/all_flash_sales.dart';
+import 'package:mystic_mall/screens/user-panel/all_products_screen.dart';
 import 'package:mystic_mall/utils/app_constant.dart';
+import 'package:mystic_mall/widgets/all_product_widget.dart';
 import 'package:mystic_mall/widgets/banner_widget.dart';
 import 'package:mystic_mall/widgets/category_widget.dart';
 import 'package:mystic_mall/widgets/custome_drawer_widget.dart';
@@ -32,39 +34,49 @@ class MainScreen extends StatelessWidget {
               SizedBox(
                 height: Get.height / 90.0,
               ),
-             
-              //bannerwidget
+
+              //Bellow is bannerwidget
 
               const BannerWidget(),
 
-              //heading widget
+              //Below is heading widget for categories
 
               HeadingWidget(
                 headingTitle: 'Categories',
                 headingSubTitle: 'According to your budget',
                 onTap: () {
-                 Get.to(const AllCategoriesScreen());
+                  Get.to(const AllCategoriesScreen());
                 },
                 buttonText: 'See More >',
               ),
 
+              //Below is categoreis widget
 
-              //categoreis widget
               const CategoryWidget(),
 
-               //heading widget
+              //Below is heading widget for flash sales
+
               HeadingWidget(
                 headingTitle: 'Flash Sales',
                 headingSubTitle: 'According to your budget',
-                onTap: () {
-                  Get.to(const AllFlashSaleProductScreen());
-                },
+                onTap: () => Get.to(const AllFlashSaleProductScreen()),
                 buttonText: 'See More >',
               ),
 
-              //flashSales product
+              //Below is flashSales product
 
-              const FlashSaleWidget()
+              const FlashSaleWidget(),
+
+              //Below is heading widget for all products
+              HeadingWidget(
+                headingTitle: 'All Products',
+                headingSubTitle: 'According to your budget',
+                onTap: () =>  Get.to(const AllProductsScreen()),
+                buttonText: 'See More >',
+              ),
+              
+              //Below is all product 
+              const AllProductsWidget()
             ],
           ),
         ),
