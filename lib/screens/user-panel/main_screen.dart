@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mystic_mall/screens/user-panel/all_categories_screen.dart';
+import 'package:mystic_mall/screens/user-panel/all_flash_sales.dart';
 import 'package:mystic_mall/utils/app_constant.dart';
 import 'package:mystic_mall/widgets/banner_widget.dart';
 import 'package:mystic_mall/widgets/category_widget.dart';
@@ -42,7 +43,7 @@ class MainScreen extends StatelessWidget {
                 headingTitle: 'Categories',
                 headingSubTitle: 'According to your budget',
                 onTap: () {
-                  Get.put(const AllCategoriesScreen());
+                 Get.to(const AllCategoriesScreen());
                 },
                 buttonText: 'See More >',
               ),
@@ -55,7 +56,9 @@ class MainScreen extends StatelessWidget {
               HeadingWidget(
                 headingTitle: 'Flash Sales',
                 headingSubTitle: 'According to your budget',
-                onTap: () {},
+                onTap: () {
+                  Get.to(const AllFlashSaleProductScreen());
+                },
                 buttonText: 'See More >',
               ),
 
