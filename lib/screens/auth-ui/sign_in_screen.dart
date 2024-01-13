@@ -136,8 +136,9 @@ class _SignInScreenState extends State<SignInScreen> {
                     child: TextButton(
                         onPressed: () async {
                           String email = userEmail.text.trim();
-                          String password = userPassword.text;
-
+                          String password = userPassword.text.trim();
+                          // ignore: avoid_print
+                          print(email);
                           if (email.isEmpty || password.isEmpty) {
                             Get.snackbar(
                                 "Error", "Please enter required details!",

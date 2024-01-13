@@ -1,4 +1,4 @@
-oimport 'package:cached_network_image/cached_network_image.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +7,7 @@ import 'package:image_card/image_card.dart';
 
 import '../../models/categories_model.dart';
 import '../../utils/app_constant.dart';
+import 'single_category_products_screen.dart';
 
 class AllCategoriesScreen extends StatefulWidget {
   const AllCategoriesScreen({super.key});
@@ -69,21 +70,24 @@ class _AllCategoriesScreenState extends State<AllCategoriesScreen> {
                         updatedAt: snapshot.data!.docs[index]['updatedAt']);
                     return Row(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            child: FillImageCard(
-                              borderRadius: 20.0,
-                              width: Get.width / 2.3,
-                              heightImage: Get.height / 10,
-                              imageProvider: CachedNetworkImageProvider(
-                                categoriesModel.categoryImg,
+                        GestureDetector(
+                          onTap: () => Get.to(AllSingleCategoryProductsScreen(categoryId: categoriesModel.categoryId,)),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              child: FillImageCard(
+                                borderRadius: 20.0,
+                                width: Get.width / 2.3,
+                                heightImage: Get.height / 10,
+                                imageProvider: CachedNetworkImageProvider(
+                                  categoriesModel.categoryImg,
+                                ),
+                                title: Center(
+                                    child: Text(
+                                  categoriesModel.categoryName,
+                                  style: const TextStyle(fontSize: 12.0),
+                                )),
                               ),
-                              title: Center(
-                                  child: Text(
-                                categoriesModel.categoryName,
-                                style: const TextStyle(fontSize: 12.0),
-                              )),
                             ),
                           ),
                         )
