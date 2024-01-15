@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:mystic_mall/screens/user-panel/all_categories_screen.dart';
 import 'package:mystic_mall/screens/user-panel/all_flash_sales.dart';
 import 'package:mystic_mall/screens/user-panel/all_products_screen.dart';
+import 'package:mystic_mall/screens/user-panel/cart_screen.dart';
 import 'package:mystic_mall/utils/app_constant.dart';
 import 'package:mystic_mall/widgets/all_product_widget.dart';
 import 'package:mystic_mall/widgets/banner_widget.dart';
@@ -23,7 +24,15 @@ class MainScreen extends StatelessWidget {
         backgroundColor: AppConstant.appMainColor,
         foregroundColor: Colors.white,
         title: Text(AppConstant.appMainName),
-        actions: const [],
+        actions:[
+          GestureDetector(
+            onTap: () => Get.to(const CartScreen()), 
+            child: const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Icon(Icons.shopping_cart),
+            ),
+          )
+        ],
       ),
       drawer: const MyDrawerWidget(),
       body: SingleChildScrollView(

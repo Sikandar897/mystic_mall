@@ -2,10 +2,12 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mystic_mall/models/cart_model.dart';
 import '../../models/products_model.dart';
 import '../../utils/app_constant.dart';
 
@@ -43,7 +45,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
       body: Container(
         child: Column(
           children: [
-
             //product images
 
             SizedBox(
@@ -183,7 +184,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                   style: TextStyle(
                                       color: AppConstant.appTextColor),
                                 ),
-                                onPressed: () {},
+                                onPressed: () async {
+                                  await checkProductExistence(uId: user!.uid);
+                                },
                               ),
                             ),
                           ),
@@ -198,5 +201,64 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         ),
       ),
     );
+  }
+
+  //Check for product its exsist or not
+
+  Future<void> checkProductExistence(
+      {required String uId, int quantityIncrement = 1}) async {
+    final DocumentReference documentReference = FirebaseFirestore.instance
+        .collection('cart')
+        .doc(uId)
+        .collection('cartOrders')
+        .doc(widget.productModel.productId.toString());
+
+    DocumentSnapshot snapshot = await documentReference.get();
+
+    if (snapshot.exists) {
+      int currentQuantity = snapshot['productQuantity'];
+
+      //update quantity
+      int updatedQuantity = currentQuantity + quantityIncrement;
+      double totalPrice =
+          double.parse(widget.productModel.fullPrice) * updatedQuantity;
+
+      await documentReference.update({
+        'productQuantity': updatedQuantity,
+        'productTotalPrice': totalPrice
+      });
+      
+     
+      //testing
+      print('products exsist');
+
+
+    } else {
+      await FirebaseFirestore.instance.collection('cart').doc(uId).set({
+        'uId': uId,
+        'createdAt': DateTime.now(),
+      });
+
+      CartModel cartModel = CartModel(
+          productId: widget.productModel.productId,
+          categoryId: widget.productModel.categoryId,
+          productName: widget.productModel.productName,
+          categoryName: widget.productModel.categoryName,
+          salePrice: widget.productModel.salePrice,
+          fullPrice: widget.productModel.fullPrice,
+          productImages: widget.productModel.productImages,
+          deliveryTime: widget.productModel.deliveryTime,
+          isSale: widget.productModel.isSale,
+          productDescription: widget.productModel.productDescription,
+          createdAt: DateTime.now(),
+          updatedAt: DateTime.now(),
+          productQuantity: 1,
+          productTotalPrice: double.parse(widget.productModel.fullPrice));
+
+      await documentReference.set(cartModel.toMap());
+
+            //testing
+            print("product added");
+    }
   }
 }
