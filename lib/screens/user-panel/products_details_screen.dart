@@ -220,19 +220,18 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
       //update quantity
       int updatedQuantity = currentQuantity + quantityIncrement;
-      double totalPrice =
-          double.parse(widget.productModel.fullPrice) * updatedQuantity;
+      double totalPrice = double.parse(widget.productModel.isSale
+              ? widget.productModel.salePrice
+              : widget.productModel.fullPrice) *
+          updatedQuantity;
 
       await documentReference.update({
         'productQuantity': updatedQuantity,
         'productTotalPrice': totalPrice
       });
-      
-     
+
       //testing
       print('products exsist');
-
-
     } else {
       await FirebaseFirestore.instance.collection('cart').doc(uId).set({
         'uId': uId,
@@ -253,12 +252,14 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           createdAt: DateTime.now(),
           updatedAt: DateTime.now(),
           productQuantity: 1,
-          productTotalPrice: double.parse(widget.productModel.fullPrice));
+          productTotalPrice: double.parse(widget.productModel.isSale
+              ? widget.productModel.salePrice
+              : widget.productModel.fullPrice));
 
       await documentReference.set(cartModel.toMap());
 
-            //testing
-            print("product added");
+      //testing
+      print("product added");
     }
   }
 }
