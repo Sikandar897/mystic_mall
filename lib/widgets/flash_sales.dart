@@ -6,6 +6,7 @@ import "package:flutter/cupertino.dart";
 import "package:get/get.dart";
 import "package:image_card/image_card.dart";
 import "package:mystic_mall/models/products_model.dart";
+import "package:mystic_mall/screens/user-panel/products_details_screen.dart";
 import "package:mystic_mall/utils/app_constant.dart";
 
 class FlashSaleWidget extends StatelessWidget {
@@ -63,40 +64,43 @@ class FlashSaleWidget extends StatelessWidget {
 
                   return Row(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: Container(
-                          child: FillImageCard(
-                            borderRadius: 20.0,
-                            width: Get.width / 3.5,
-                            heightImage: Get.height / 20,
-                            imageProvider: CachedNetworkImageProvider(
-                              //at start we will shwo only one image but when user click see more all sales will be visiuble
-                              productModel.productImages[0],
-                            ),
-                            title: Center(
-                                child: Text(
-                              productModel.productName,
-                              overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(fontSize: 10.0),
-                            )),
-                            footer: Row(
-                              children: [
-                                Text(
-                                  ' ${productModel.salePrice}',
-                                  style: const TextStyle(fontSize: 10.0),
-                                ),
-                                const SizedBox(
-                                  width: 2.0,
-                                ),
-                                Text(
-                                  'Rs ${productModel.fullPrice}',
-                                  style: const TextStyle(
-                                      fontSize: 10.0,
-                                      color: AppConstant.appSecondoryColor,
-                                      decoration: TextDecoration.lineThrough),
-                                )
-                              ],
+                      GestureDetector(
+                        onTap: () => Get.to(ProductDetailsScreen(productModel: productModel)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Container(
+                            child: FillImageCard(
+                              borderRadius: 20.0,
+                              width: Get.width / 3.5,
+                              heightImage: Get.height / 20,
+                              imageProvider: CachedNetworkImageProvider(
+                                //at start we will shwo only one image but when user click see more all sales will be visiuble
+                                productModel.productImages[0],
+                              ),
+                              title: Center(
+                                  child: Text(
+                                productModel.productName,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(fontSize: 10.0),
+                              )),
+                              footer: Row(
+                                children: [
+                                  Text(
+                                    ' ${productModel.salePrice}',
+                                    style: const TextStyle(fontSize: 10.0),
+                                  ),
+                                  const SizedBox(
+                                    width: 2.0,
+                                  ),
+                                  Text(
+                                    'Rs ${productModel.fullPrice}',
+                                    style: const TextStyle(
+                                        fontSize: 10.0,
+                                        color: AppConstant.appSecondoryColor,
+                                        decoration: TextDecoration.lineThrough),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),
