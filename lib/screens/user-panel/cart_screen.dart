@@ -133,42 +133,42 @@ class _CartScreenState extends State<CartScreen> {
                                     });
                                   }
                                 },
-                                child: GestureDetector(
-                                  onTap: () async {
-                                    if (cartModel.productQuantity > 0) {
-                                      await FirebaseFirestore.instance
-                                          .collection('cart')
-                                          .doc(user!.uid)
-                                          .collection('cartOrders')
-                                          .doc(cartModel.productId)
-                                          .update({
-                                        'productQuantity':
-                                            cartModel.productQuantity + 1,
-                                        'productTotalPrice': double.parse(
-                                                cartModel.fullPrice) +
-                                            double.parse(cartModel.fullPrice) *
-                                                (cartModel.productQuantity)
-                                      });
-                                    }
-                                  },
-                                  child: CircleAvatar(
-                                    radius: 14.0,
-                                    backgroundColor: AppConstant.appMainColor,
-                                    child: Text('-',
-                                        style: TextStyle(
-                                            color: AppConstant.appTextColor)),
-                                  ),
+                                child: CircleAvatar(
+                                  radius: 14.0,
+                                  backgroundColor: AppConstant.appMainColor,
+                                  child: Text('-',
+                                      style: TextStyle(
+                                          color: AppConstant.appTextColor)),
                                 ),
                               ),
                               SizedBox(
                                 width: Get.width / 20.0,
                               ),
-                              CircleAvatar(
-                                radius: 14.0,
-                                backgroundColor: AppConstant.appMainColor,
-                                child: Text('+',
-                                    style: TextStyle(
-                                        color: AppConstant.appTextColor)),
+                              GestureDetector(
+                                onTap: () async {
+                                  if (cartModel.productQuantity > 0) {
+                                    await FirebaseFirestore.instance
+                                        .collection('cart')
+                                        .doc(user!.uid)
+                                        .collection('cartOrders')
+                                        .doc(cartModel.productId)
+                                        .update({
+                                      'productQuantity':
+                                          cartModel.productQuantity + 1,
+                                      'productTotalPrice': double.parse(
+                                              cartModel.fullPrice) +
+                                          double.parse(cartModel.fullPrice) *
+                                              (cartModel.productQuantity)
+                                    });
+                                  }
+                                },
+                                child: CircleAvatar(
+                                  radius: 14.0,
+                                  backgroundColor: AppConstant.appMainColor,
+                                  child: Text('+',
+                                      style: TextStyle(
+                                          color: AppConstant.appTextColor)),
+                                ),
                               )
                             ],
                           ),
