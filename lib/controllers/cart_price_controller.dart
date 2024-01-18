@@ -21,10 +21,16 @@ class ProductPriceController extends GetxController {
         .doc(user!.uid)
         .collection('cartOrders')
         .get();
-        double sum = 0.0;
+    double sum = 0.0;
 
-        for (final doc in snapshot.docs){
-          final data = doc.data();
-        }
+    for (final doc in snapshot.docs) {
+      final data = doc.data();
+
+      // ignore: unnecessary_null_comparison
+      if (data != null && data.containsKey('productTotalPrice')) {
+        sum += (data['productTotalPrice'] as num).toDouble();
+      }
+    }
+    totalPrice.value = sum;
   }
 }
