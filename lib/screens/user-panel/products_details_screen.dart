@@ -203,7 +203,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     );
   }
 
-  //Check for product its exsist or not
+  //Check for product if its exsist or not
 
   Future<void> checkProductExistence(
       {required String uId, int quantityIncrement = 1}) async {
@@ -229,9 +229,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         'productQuantity': updatedQuantity,
         'productTotalPrice': totalPrice
       });
-
-      //testing
-      print('products exsist');
     } else {
       await FirebaseFirestore.instance.collection('cart').doc(uId).set({
         'uId': uId,
@@ -257,9 +254,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               : widget.productModel.fullPrice));
 
       await documentReference.set(cartModel.toMap());
-
-      //testing
-      print("product added");
     }
   }
 }
