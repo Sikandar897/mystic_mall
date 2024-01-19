@@ -30,13 +30,30 @@ class WelcomeScreen extends StatelessWidget {
             Container(
               child: Lottie.asset('assets/images/splash-icon.json'),
             ),
-            Container(
-                margin: const EdgeInsets.only(top: 20.0),
-                child: const Text(
-                  "Happy Shopping",
-                  style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
-                )),
-            SizedBox(height: Get.height / 12),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                    margin: const EdgeInsets.only(top: 6.0),
+                    child: const Text(
+                      "Happy",
+                      style: TextStyle(
+                          color: AppConstant.appSecondoryColor,
+                          fontSize: 40.0, fontWeight: FontWeight.bold),
+                    )),
+                SizedBox(width: Get.width / 50),
+                Container(
+                    margin: const EdgeInsets.only(top: 20.0),
+                    child: const Text(
+                      "Shopping!",
+                      style: TextStyle(
+                          fontSize: 22.0, fontWeight: FontWeight.bold,
+                          color: AppConstant.appMainColor
+                          ),
+                    )),
+              ],
+            ),
+            SizedBox(height: Get.height / 25),
             Material(
                 child: Container(
               decoration: BoxDecoration(

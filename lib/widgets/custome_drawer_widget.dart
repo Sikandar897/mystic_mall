@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mystic_mall/screens/user-panel/all_orders_screen.dart';
+import 'package:mystic_mall/screens/user-panel/all_products_screen.dart';
 import 'package:mystic_mall/utils/app_constant.dart';
 
 import '../screens/auth-ui/welcome_screen.dart';
@@ -71,16 +72,17 @@ class _MyDrawerWidgetState extends State<MyDrawerWidget> {
 
             //product
 
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.0),
+             Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: ListTile(
                 titleAlignment: ListTileTitleAlignment.center,
-                title: Text('Product',
+                title: const Text('Product',
                     style: TextStyle(color: AppConstant.appTextColor)),
                 leading:
-                    FaIcon(Icons.local_offer, color: AppConstant.appTextColor),
+                    const FaIcon(Icons.local_offer, color: AppConstant.appTextColor),
                 trailing:
-                    Icon(Icons.arrow_forward, color: AppConstant.appTextColor),
+                    const Icon(Icons.arrow_forward, color: AppConstant.appTextColor),
+                    onTap: () => Get.to(const AllProductsScreen()),
               ),
             ),
 

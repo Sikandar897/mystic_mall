@@ -40,7 +40,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               padding: const EdgeInsets.all(8.0),
               child: Icon(
                 Icons.shopping_cart,
-                
               ),
             ),
           ),
@@ -193,7 +192,18 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                       color: AppConstant.appTextColor),
                                 ),
                                 onPressed: () async {
-                                  await checkProductExistence(uId: user!.uid);
+                                  // Assuming checkProductExistence returns void or you can modify it to return void
+                                  checkProductExistence(uId: user!.uid);
+
+                                  // Show a small popup saying "Product added"
+                                  Get.snackbar(
+                                    "Product added",
+                                    "",
+                                    snackPosition: SnackPosition.BOTTOM,
+                                    backgroundColor:
+                                        AppConstant.appSecondoryColor,
+                                    colorText: AppConstant.appTextColor,
+                                  );
                                 },
                               ),
                             ),
@@ -219,9 +229,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         "Hello MysticMall \n i want to know about this product \n ${productModel.productName} \n ${productModel.productId}";
     final url = 'https://wa.me/$number?text=${Uri.encodeComponent(message)}';
 
-    if(await canLaunch(url)){
+    if (await canLaunch(url)) {
       await launch(url);
-    }else{
+    } else {
       throw 'could not launch $url';
     }
   }
