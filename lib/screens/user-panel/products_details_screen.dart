@@ -8,8 +8,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mystic_mall/models/cart_model.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../models/products_model.dart';
 import '../../utils/app_constant.dart';
+import 'cart_screen.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
   ProductModel productModel;
@@ -33,10 +35,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         ),
         actions: [
           GestureDetector(
+            onTap: () => Get.to(const CartScreen()),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Icon(
                 Icons.shopping_cart,
+                
               ),
             ),
           ),
@@ -163,7 +167,11 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                   style: TextStyle(
                                       color: AppConstant.appTextColor),
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  sendMessageOnWhatsapp(
+                                    productModel: widget.productModel,
+                                  );
+                                },
                               ),
                             ),
                           ),
@@ -201,6 +209,21 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         ),
       ),
     );
+  }
+
+  //whatsappp message method
+  static Future<void> sendMessageOnWhatsapp(
+      {required ProductModel productModel}) async {
+    final number = "+923355640044";
+    final message =
+        "Hello MysticMall \n i want to know about this product \n ${productModel.productName} \n ${productModel.productId}";
+    final url = 'https://wa.me/$number?text=${Uri.encodeComponent(message)}';
+
+    if(await canLaunch(url)){
+      await launch(url);
+    }else{
+      throw 'could not launch $url';
+    }
   }
 
   //Check for product if its exsist or not
