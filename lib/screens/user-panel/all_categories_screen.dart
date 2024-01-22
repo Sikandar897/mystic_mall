@@ -27,6 +27,7 @@ class _AllCategoriesScreenState extends State<AllCategoriesScreen> {
           foregroundColor: Colors.white,
           title: const Text('All Categories'),
         ),
+        backgroundColor: Colors.grey.shade100,
         body: FutureBuilder(
           future: FirebaseFirestore.instance.collection('categories').get(),
           builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {

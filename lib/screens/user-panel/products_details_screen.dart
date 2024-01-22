@@ -23,6 +23,7 @@ class ProductDetailsScreen extends StatefulWidget {
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   User? user = FirebaseAuth.instance.currentUser;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,6 +46,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           ),
         ],
       ),
+      backgroundColor: Colors.grey.shade100,
       body: Container(
         child: Column(
           children: [
@@ -82,136 +84,103 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             ),
 
             Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(16.0),
               child: Card(
                 elevation: 5.0,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(15.0),
                 ),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        alignment: Alignment.topLeft,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              widget.productModel.productName,
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            Icon(Icons.favorite_outline)
-                          ],
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(
+                        widget.productModel.productName,
+                        style: TextStyle(
+                          color: AppConstant.appSecondoryColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18.0,
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        alignment: Alignment.topLeft,
-                        child: Row(
-                          children: [
-                            widget.productModel.isSale == true &&
-                                    widget.productModel.salePrice != ''
-                                ? Text(
-                                    "PKR: " + widget.productModel.salePrice,
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  )
-                                : Text(
-                                    "PKR: " + widget.productModel.fullPrice,
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                          ],
+                      SizedBox(height: 8.0),
+                      Text(
+                        widget.productModel.productDescription,
+                        style: TextStyle(
+                          color: Colors.grey.shade600,
+                          fontSize: 14.0,
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          "Category: " + widget.productModel.categoryName,
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          widget.productModel.productDescription,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
+                      SizedBox(height: 12.0),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Material(
-                            child: Container(
-                              width: Get.width / 3.0,
-                              height: Get.height / 16,
-                              decoration: BoxDecoration(
-                                color: AppConstant.appSecondoryColor,
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-                              child: TextButton(
-                                child: Text(
-                                  "WhatsApp",
-                                  style: TextStyle(
-                                      color: AppConstant.appTextColor),
-                                ),
-                                onPressed: () {
-                                  sendMessageOnWhatsapp(
-                                    productModel: widget.productModel,
-                                  );
-                                },
-                              ),
+                          Text(
+                            widget.productModel.isSale
+                                ? "PKR: " + widget.productModel.salePrice
+                                : "PKR: " + widget.productModel.fullPrice,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16.0,
+                              color: AppConstant.appSecondoryColor,
                             ),
                           ),
-                          SizedBox(
-                            width: 5.0,
-                          ),
-                          Material(
-                            child: Container(
-                              width: Get.width / 3.0,
-                              height: Get.height / 16,
-                              decoration: BoxDecoration(
-                                color: AppConstant.appSecondoryColor,
-                                borderRadius: BorderRadius.circular(20.0),
-                              ),
-                              child: TextButton(
-                                child: Text(
-                                  "Add to cart",
-                                  style: TextStyle(
-                                      color: AppConstant.appTextColor),
-                                ),
-                                onPressed: () async {
-                                  // Assuming checkProductExistence returns void or you can modify it to return void
-                                  checkProductExistence(uId: user!.uid);
-
-                                  // Show a small popup saying "Product added"
-                                  Get.snackbar(
-                                    "Product added",
-                                    "",
-                                    snackPosition: SnackPosition.BOTTOM,
-                                    backgroundColor:
-                                        AppConstant.appSecondoryColor,
-                                    colorText: AppConstant.appTextColor,
-                                  );
-                                },
-                              ),
-                            ),
+                          Icon(
+                            Icons.favorite_outline,
+                            color: Colors.red, // Adjust the color as needed
                           ),
                         ],
                       ),
-                    )
-                  ],
+                      SizedBox(height: 16.0),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: AppConstant.appSecondoryColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                        ),
+                        onPressed: () {
+                          sendMessageOnWhatsapp(
+                            productModel: widget.productModel,
+                          );
+                        },
+                        child: Text(
+                          "WhatsApp",
+                          style: TextStyle(
+                            color: AppConstant.appTextColor,
+                            fontSize: 14.0,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 8.0),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: AppConstant.appSecondoryColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                        ),
+                        onPressed: () async {
+                          await checkProductExistence(uId: user!.uid);
+
+                          Get.snackbar(
+                            "Product added",
+                            "",
+                            snackPosition: SnackPosition.BOTTOM,
+                            backgroundColor: AppConstant.appSecondoryColor,
+                            colorText: AppConstant.appTextColor,
+                          );
+                        },
+                        child: Text(
+                          "Add to Cart",
+                          style: TextStyle(
+                            color: AppConstant.appTextColor,
+                            fontSize: 14.0,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             )
@@ -221,7 +190,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     );
   }
 
-  //whatsappp message method
+  //whatsapp message method
   static Future<void> sendMessageOnWhatsapp(
       {required ProductModel productModel}) async {
     final number = "+923355640044";
@@ -236,8 +205,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     }
   }
 
-  //Check for product if its exsist or not
-
+  //Check for product if its exist or not
   Future<void> checkProductExistence(
       {required String uId, int quantityIncrement = 1}) async {
     final DocumentReference documentReference = FirebaseFirestore.instance

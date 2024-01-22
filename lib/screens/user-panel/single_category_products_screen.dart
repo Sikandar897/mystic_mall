@@ -32,6 +32,7 @@ class _AllSingleCategoryProductsScreenState
         backgroundColor: AppConstant.appMainColor,
         title: Text('Products'),
       ),
+      backgroundColor: Colors.grey.shade100,
       body: FutureBuilder(
         future: FirebaseFirestore.instance
             .collection('products')

@@ -47,7 +47,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
     }
     else{
-      Get.to(WelcomeScreen());
+      Get.offAll(WelcomeScreen());
     }
   }
   @override

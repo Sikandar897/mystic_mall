@@ -21,7 +21,12 @@ class WelcomeScreen extends StatelessWidget {
         centerTitle: true,
         foregroundColor: AppConstant.appTextColor,
         backgroundColor: AppConstant.appSecondoryColor,
-        title: const Text("Welcome to my App"),
+        title: const Text("Welcome to MysticMall",
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 25,
+        ),
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -36,19 +41,37 @@ class WelcomeScreen extends StatelessWidget {
                 Container(
                     margin: const EdgeInsets.only(top: 6.0),
                     child: const Text(
-                      "Happy",
+                      "  H",
                       style: TextStyle(
                           color: AppConstant.appSecondoryColor,
-                          fontSize: 40.0, fontWeight: FontWeight.bold),
+                          fontSize: 30.0, fontWeight: FontWeight.bold),
                     )),
-                SizedBox(width: Get.width / 50),
-                Container(
-                    margin: const EdgeInsets.only(top: 20.0),
+                    Container(
+                    margin: const EdgeInsets.only(top: 14.0),
                     child: const Text(
-                      "Shopping!",
+                      "appy",
                       style: TextStyle(
-                          fontSize: 22.0, fontWeight: FontWeight.bold,
+                          fontSize: 26.0, fontWeight: FontWeight.bold,
                           color: AppConstant.appMainColor
+                          ),
+                    )),
+                SizedBox(width: Get.width / 100),
+                Container(
+                    margin: const EdgeInsets.only(top: 14.0),
+                    child: const Text(
+                      "shoppin",
+                      style: TextStyle(
+                          fontSize: 30.0, fontWeight: FontWeight.bold,
+                          color: AppConstant.appMainColor
+                          ),
+                    )),
+                    Container(
+                    margin: const EdgeInsets.only(top: 14.0),
+                    child: const Text(
+                      "G",
+                      style: TextStyle(
+                           color: AppConstant.appSecondoryColor,
+                          fontSize: 30.0, fontWeight: FontWeight.bold
                           ),
                     )),
               ],
