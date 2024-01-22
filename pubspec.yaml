@@ -78,6 +78,8 @@ dependencies:
   image_card: 
 
   flutter_swipe_action_cell:
+
+  url_launcher: ^6.2.3
   
 
 dev_dependencies:

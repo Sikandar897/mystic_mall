@@ -9,6 +9,7 @@ import 'package:image_card/image_card.dart';
 
 import '../../models/products_model.dart';
 import '../../utils/app_constant.dart';
+import 'products_details_screen.dart';
 
 class AllFlashSaleProductScreen extends StatefulWidget {
   const AllFlashSaleProductScreen({super.key});
@@ -84,22 +85,25 @@ class _AllFlashSaleProductScreenState extends State<AllFlashSaleProductScreen> {
 
                 return Row(
                   children: [
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Container(
-                        child: FillImageCard(
-                          borderRadius: 20.0,
-                          width: Get.width / 2.3,
-                          heightImage: Get.height / 10,
-                          imageProvider: CachedNetworkImageProvider(
-                            productModel.productImages[0],
-                          ),
-                          title: Center(
-                            child: Text(
-                              productModel.productName,
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
-                              style: TextStyle(fontSize: 12.0),
+                    GestureDetector(
+                       onTap: () => Get.to(ProductDetailsScreen(productModel: productModel)),
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Container(
+                          child: FillImageCard(
+                            borderRadius: 20.0,
+                            width: Get.width / 2.3,
+                            heightImage: Get.height / 10,
+                            imageProvider: CachedNetworkImageProvider(
+                              productModel.productImages[0],
+                            ),
+                            title: Center(
+                              child: Text(
+                                productModel.productName,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                                style: TextStyle(fontSize: 12.0),
+                              ),
                             ),
                           ),
                         ),

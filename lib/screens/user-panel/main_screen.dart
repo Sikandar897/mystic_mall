@@ -35,6 +35,7 @@ class MainScreen extends StatelessWidget {
         ],
       ),
       drawer: const MyDrawerWidget(),
+      backgroundColor: Colors.grey.shade100,
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Container(
