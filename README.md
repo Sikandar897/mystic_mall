@@ -1,16 +1,16 @@
 # MysticMall
 
-🛍️✨ **Coming Soon!** 🛍️✨
+🛍️✨ **User Panel!** 🛍️✨
 
 ![](https://raw.githubusercontent.com/Sikandar897/mystic_mall/working/assets/images/Picsart_24-01-18_23-18-03-140.jpg)
 
 Welcome to MysticMall – your future go-to shopping destination! my Flutter e-commerce app, powered by Firebase, is currently in development and will bring you an intuitive, user-friendly, and feature-packed shopping experience.
 
-## Features (Coming Soon)
+## Features
 
 - Add to Cart
 - Wishlist
-- Cash on Delivery
+- Cash on Delivery (Payment Integration coming soon)
 - Ad Integration
 - Push Notifications
 
