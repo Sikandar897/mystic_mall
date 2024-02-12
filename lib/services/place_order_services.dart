@@ -62,6 +62,7 @@ void placeOrder(
               .doc(user.uid)
               .set({
             'uId': user.uid,
+            'customerName': customerName,
             'customerPhone': customerPhone,
             'customerAddress': customerAddress,
             'customerDeviceToken': customerDeviceToken,

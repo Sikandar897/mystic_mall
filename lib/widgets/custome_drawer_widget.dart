@@ -26,7 +26,7 @@ class _MyDrawerWidgetState extends State<MyDrawerWidget> {
             borderRadius: BorderRadius.only(
                 topRight: Radius.circular(20.0),
                 bottomRight: Radius.circular(20.0))),
-        backgroundColor: AppConstant.appSecondoryColor,
+        backgroundColor: AppConstant.appMainColor,
         child: Wrap(
           runSpacing: 10,
           children: [

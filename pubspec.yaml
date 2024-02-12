@@ -34,7 +34,7 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.6
   
   #dependecy for lottie
   lottie: ^3.0.0
@@ -43,7 +43,7 @@ dependencies:
   get: ^4.6.6
 
   #font awosme depenedcy
-  font_awesome_flutter: ^10.6.0
+  font_awesome_flutter: ^10.7.0
 
   #this dependecy helps in auto keyboard of and on while swting to other screens
   flutter_keyboard_visibility: ^6.0.0
@@ -58,13 +58,13 @@ dependencies:
   google_sign_in: ^6.2.1
 
   #firestore dependency
-  cloud_firestore: ^4.14.0
+  cloud_firestore: ^4.15.2 
 
   #cool easy loading depenedcy 
   flutter_easyloading: ^3.0.5
   
   #email vilidator
-  email_validator: ^2.0.1
+  email_validator: ^2.1.17
 
   #firebase_messaging dependecny
   firebase_messaging: ^14.7.10
@@ -75,11 +75,11 @@ dependencies:
   #cached newtwork dependency which help one time loading then img stroed in cached for the next time it wont reload again
   cached_network_image: ^3.3.1
 
-  image_card: 
+  image_card: ^0.0.4
 
-  flutter_swipe_action_cell:
+  flutter_swipe_action_cell: ^3.1.3
 
-  url_launcher: ^6.2.3
+  url_launcher: ^6.2.4
   
 
 dev_dependencies:
