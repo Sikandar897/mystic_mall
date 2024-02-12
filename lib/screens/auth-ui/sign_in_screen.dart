@@ -23,12 +23,12 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  
-  //sign In Controller 
+  //sign In Controller
   final SignInController signInController = Get.put(SignInController());
-  
+
   //get user controller
-  final GetUserDataController getUserDataController  = Get.put(GetUserDataController());
+  final GetUserDataController getUserDataController =
+      Get.put(GetUserDataController());
 
   //text editing controller
 
@@ -72,6 +72,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         decoration: InputDecoration(
                             hintText: 'email',
                             prefixIcon: const Icon(Icons.email),
+                            prefixIconColor: AppConstant.appSecondoryColor,
                             contentPadding:
                                 const EdgeInsets.only(top: 2.0, left: 8.0),
                             border: OutlineInputBorder(
@@ -94,6 +95,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             decoration: InputDecoration(
                                 hintText: 'password',
                                 prefixIcon: const Icon(Icons.lock),
+                                prefixIconColor: AppConstant.appSecondoryColor,
                                 suffix: GestureDetector(
                                     onTap: () {
                                       signInController.isPasswordVisible
@@ -137,8 +139,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         onPressed: () async {
                           String email = userEmail.text.trim();
                           String password = userPassword.text.trim();
-                          // ignore: avoid_print
-                          print(email);
+
                           if (email.isEmpty || password.isEmpty) {
                             Get.snackbar(
                                 "Error", "Please enter required details!",
@@ -150,30 +151,29 @@ class _SignInScreenState extends State<SignInScreen> {
                                 await signInController.signInMethod(
                                     email, password);
 
-                                    var userData =await getUserDataController.getUserData(userCredential!.user!.uid); //uniqueId
+                            var userData =
+                                await getUserDataController.getUserData(
+                                    userCredential!.user!.uid); //uniqueId
 
                             if (userCredential != null) {
                               if (userCredential.user!.emailVerified) {
-
-                                if(userData[0]['isAdmin'] == true){
-
+                                if (userData[0]['isAdmin'] == true) {
                                   Get.offAll(const AdminMainScreen());
 
-                                  Get.snackbar("Success Admin Login", "Login Successfully!",
-                                    snackPosition: SnackPosition.BOTTOM,
-                                    backgroundColor:
-                                        AppConstant.appSecondoryColor,
-                                    colorText: AppConstant.appTextColor);
-
-                                }
-                                else{
+                                  Get.snackbar("Success Admin Login",
+                                      "Login Successfully!",
+                                      snackPosition: SnackPosition.BOTTOM,
+                                      backgroundColor:
+                                          AppConstant.appSecondoryColor,
+                                      colorText: AppConstant.appTextColor);
+                                } else {
                                   Get.offAll(const MainScreen());
-                                  Get.snackbar("Success User Login", "Login Successfully!",
-                                    snackPosition: SnackPosition.BOTTOM,
-                                    backgroundColor:
-                                        AppConstant.appSecondoryColor,
-                                    colorText: AppConstant.appTextColor);
-
+                                  Get.snackbar("Success User Login",
+                                      "Login Successfully!",
+                                      snackPosition: SnackPosition.BOTTOM,
+                                      backgroundColor:
+                                          AppConstant.appSecondoryColor,
+                                      colorText: AppConstant.appTextColor);
                                 }
                               } else {
                                 Get.snackbar("Error",

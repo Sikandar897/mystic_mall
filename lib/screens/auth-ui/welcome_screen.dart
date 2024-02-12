@@ -21,12 +21,12 @@ class WelcomeScreen extends StatelessWidget {
         centerTitle: true,
         foregroundColor: AppConstant.appTextColor,
         backgroundColor: AppConstant.appSecondoryColor,
-        title: const Text("Welcome to MysticMall",
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 25,
-        ),
-        ),
+        // title: const Text("Welcome to MysticMall",
+        // style: TextStyle(
+        //   fontWeight: FontWeight.bold,
+        //   fontSize: 25,
+        // ),
+        // ),
       ),
       body: SingleChildScrollView(
         child: Column(

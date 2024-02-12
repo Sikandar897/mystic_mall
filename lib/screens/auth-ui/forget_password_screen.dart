@@ -24,10 +24,10 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
       return Scaffold(
         appBar: AppBar(
           backgroundColor: AppConstant.appSecondoryColor,
+          foregroundColor: AppConstant.appTextColor,
           centerTitle: true,
           title: const Text(
             "Forget Password",
-            style: TextStyle(color: AppConstant.appTextColor),
           ),
         ),
         body: Container(
@@ -55,6 +55,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                     decoration: InputDecoration(
                       hintText: "Email",
                       prefixIcon: const Icon(Icons.email),
+                      prefixIconColor: AppConstant.appSecondoryColor,
                       contentPadding:
                           const EdgeInsets.only(top: 2.0, left: 8.0),
                       border: OutlineInputBorder(

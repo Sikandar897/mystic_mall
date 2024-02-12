@@ -51,7 +51,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         style: TextStyle(
                             color: AppConstant.appSecondoryColor,
                             fontWeight: FontWeight.bold,
-                            fontSize: 16.0),
+                            fontSize: 22.0),
                       )),
                   SizedBox(
                     height: Get.height / 20,
@@ -67,7 +67,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         keyboardType: TextInputType.name,
                         decoration: InputDecoration(
                             hintText: 'User Name',
-                            prefixIcon: const Icon(Icons.person),
+                            prefixIcon: const Icon(Icons.person), 
+                            prefixIconColor: AppConstant.appSecondoryColor,
                             contentPadding:
                                 const EdgeInsets.only(top: 2.0, left: 8.0),
                             border: OutlineInputBorder(
@@ -87,6 +88,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         decoration: InputDecoration(
                             hintText: 'Phone',
                             prefixIcon: const Icon(Icons.phone),
+                            prefixIconColor: AppConstant.appSecondoryColor,
                             contentPadding:
                                 const EdgeInsets.only(top: 2.0, left: 8.0),
                             border: OutlineInputBorder(
@@ -106,6 +108,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         decoration: InputDecoration(
                             hintText: 'City',
                             prefixIcon: const Icon(Icons.location_pin),
+                            prefixIconColor: AppConstant.appSecondoryColor,
                             contentPadding:
                                 const EdgeInsets.only(top: 2.0, left: 8.0),
                             border: OutlineInputBorder(
@@ -125,6 +128,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         decoration: InputDecoration(
                             hintText: 'email',
                             prefixIcon: const Icon(Icons.email),
+                            prefixIconColor: AppConstant.appSecondoryColor,
                             contentPadding:
                                 const EdgeInsets.only(top: 2.0, left: 8.0),
                             border: OutlineInputBorder(
@@ -150,6 +154,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             decoration: InputDecoration(
                                 hintText: 'password',
                                 prefixIcon: const Icon(Icons.lock),
+                                prefixIconColor: AppConstant.appSecondoryColor,
                                 suffix: GestureDetector(
                                     onTap: () {
                                       signUpController.isPasswordVisible
